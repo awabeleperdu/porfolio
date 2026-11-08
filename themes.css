@@ -1,0 +1,42 @@
+/* 6 thèmes. Pour en créer un : copie un bloc, change le nom et les couleurs,
+   puis ajoute-le dans theme.js. */
+:root,[data-theme="pro"]{
+  --bg:#f6f5f1;--bgimg:none;--bgsize:auto;--s:#ffffff;--s2:#efede6;--t:#14171f;--m:#5b6170;--faint:#c9ccd4;--hl:#1d4ed8;--l:#e0ddd3;--bw:1px;
+  --a:#1d4ed8;--a2:#0ea5e9;--lc:#1d4ed8;--on:#ffffff;--pbd:#e0ddd3;--r:12px;
+  --f:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;--fs:Inter,system-ui,sans-serif;--w:700;--ls:-.03em;
+  --lab:Inter,system-ui,sans-serif;--labtt:uppercase;--labls:.12em;
+  --sh:0 1px 2px rgba(20,23,31,.08),0 8px 24px -12px rgba(29,78,216,.35);--blob:rgba(29,78,216,.07);--blur:0px;
+  --grad:linear-gradient(135deg,#1e3a8a,#1d4ed8 55%,#0ea5e9);
+  --th0:linear-gradient(135deg,#1e3a8a,#3b82f6);--th1:linear-gradient(135deg,#0f766e,#2dd4bf);--th2:linear-gradient(135deg,#7c3aed,#c084fc);--th3:linear-gradient(135deg,#b45309,#fbbf24);--th4:linear-gradient(135deg,#be123c,#fb7185);--th5:linear-gradient(135deg,#334155,#94a3b8);
+}
+[data-theme="minuit"]{
+  --bg:#09090b;--bgimg:none;--s:#131316;--s2:#1b1b20;--t:#f4f4f5;--m:#a1a1aa;--faint:#3f3f46;--hl:#5eead4;--l:#27272a;--a:#5eead4;--a2:#38bdf8;--lc:#5eead4;--on:#04201c;--pbd:#27272a;--r:14px;
+  --sh:0 0 0 1px rgba(94,234,212,.15),0 10px 30px -12px rgba(94,234,212,.35);--blob:rgba(94,234,212,.08);
+  --grad:linear-gradient(135deg,#0f172a,#134e4a 60%,#0e7490);
+  --th0:linear-gradient(135deg,#0f766e,#134e4a);--th1:linear-gradient(135deg,#1e3a8a,#0e7490);--th2:linear-gradient(135deg,#4c1d95,#1e1b4b);--th3:linear-gradient(135deg,#164e63,#0f172a);--th4:linear-gradient(135deg,#065f46,#042f2e);--th5:linear-gradient(135deg,#27272a,#52525b);
+}
+[data-theme="studio"]{
+  --bg:#f4efe6;--s:#fbf8f2;--s2:#ebe4d6;--t:#201a14;--m:#6b6154;--faint:#d4c9b6;--hl:#c2410c;--l:#dcd2bf;--a:#c2410c;--a2:#b45309;--lc:#c2410c;--on:#fff8f1;--pbd:#dcd2bf;--r:4px;
+  --f:Inter,system-ui,sans-serif;--fs:"Instrument Serif",Georgia,"Times New Roman",serif;--w:400;--ls:-.02em;--lab:"JetBrains Mono",ui-monospace,monospace;--labls:.1em;
+  --sh:0 1px 0 rgba(32,26,20,.1);--blob:rgba(194,65,12,.08);--grad:linear-gradient(135deg,#7c2d12,#c2410c 60%,#f59e0b);
+  --th0:linear-gradient(135deg,#9a3412,#fdba74);--th1:linear-gradient(135deg,#3f6212,#bef264);--th2:linear-gradient(135deg,#1e3a5f,#93c5fd);--th3:linear-gradient(135deg,#78350f,#fcd34d);--th4:linear-gradient(135deg,#831843,#f9a8d4);--th5:linear-gradient(135deg,#44403c,#d6d3d1);
+}
+[data-theme="verre"]{
+  --bg:#0b1020;--bgimg:radial-gradient(60% 50% at 15% 10%,rgba(56,189,248,.35),transparent 70%),radial-gradient(50% 45% at 90% 20%,rgba(167,139,250,.35),transparent 70%),radial-gradient(60% 50% at 50% 100%,rgba(244,114,182,.28),transparent 70%);
+  --s:rgba(255,255,255,.07);--s2:rgba(255,255,255,.12);--t:#f1f5f9;--m:#aab4c8;--faint:rgba(255,255,255,.25);--hl:#7dd3fc;--l:rgba(255,255,255,.16);--a:#7dd3fc;--a2:#c4b5fd;--lc:#7dd3fc;--on:#06121f;--pbd:rgba(255,255,255,.18);--r:20px;
+  --blur:18px;--sh:0 10px 40px -10px rgba(0,0,0,.5);--blob:rgba(125,211,252,.1);--grad:linear-gradient(135deg,rgba(125,211,252,.35),rgba(167,139,250,.35));
+  --th0:linear-gradient(135deg,#0ea5e9,#6366f1);--th1:linear-gradient(135deg,#14b8a6,#3b82f6);--th2:linear-gradient(135deg,#a855f7,#ec4899);--th3:linear-gradient(135deg,#f59e0b,#ef4444);--th4:linear-gradient(135deg,#22c55e,#06b6d4);--th5:linear-gradient(135deg,#64748b,#334155);
+}
+[data-theme="brut"]{
+  --bg:#ffe14d;--s:#ffffff;--s2:#fff3a8;--t:#111111;--m:#333333;--faint:#111;--hl:#ff6fa5;--l:#111111;--bw:3px;--a:#ff6fa5;--a2:#3b82f6;--lc:#111;--on:#111111;--pbd:#111;--r:0px;
+  --f:"Space Grotesk",Inter,system-ui,sans-serif;--fs:"Space Grotesk",Inter,sans-serif;--w:700;--ls:-.04em;--lab:"Space Grotesk",sans-serif;--labls:.06em;
+  --sh:6px 6px 0 #111;--blob:transparent;--grad:linear-gradient(135deg,#ff6fa5,#ffb86f);
+  --th0:#ff6fa5;--th1:#7dd3fc;--th2:#a3e635;--th3:#fb923c;--th4:#c4b5fd;--th5:#fde047;
+}
+[data-theme="neon"]{
+  --bg:#07040f;--bgimg:linear-gradient(rgba(232,121,249,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(232,121,249,.07) 1px,transparent 1px);--bgsize:44px 44px;
+  --s:#120a22;--s2:#1b0f33;--t:#f5eaff;--m:#b8a4d6;--faint:#4a3570;--hl:#e879f9;--l:#3a2460;--a:#e879f9;--a2:#22d3ee;--lc:#22d3ee;--on:#1a0526;--pbd:#3a2460;--r:10px;
+  --f:Inter,system-ui,sans-serif;--lab:"JetBrains Mono",ui-monospace,monospace;--labls:.14em;
+  --sh:0 0 0 1px rgba(232,121,249,.4),0 0 28px -4px rgba(232,121,249,.55);--blob:rgba(232,121,249,.1);--grad:linear-gradient(135deg,#4a044e,#7e22ce 55%,#0891b2);
+  --th0:linear-gradient(135deg,#a21caf,#7e22ce);--th1:linear-gradient(135deg,#0891b2,#6d28d9);--th2:linear-gradient(135deg,#be185d,#7c3aed);--th3:linear-gradient(135deg,#0e7490,#a21caf);--th4:linear-gradient(135deg,#6d28d9,#db2777);--th5:linear-gradient(135deg,#312e81,#701a75);
+}
