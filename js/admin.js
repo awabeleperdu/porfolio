@@ -99,7 +99,7 @@ function shell(user) {
       h('a', { class: 'ad-link', href: './' }, 'Voir le site'),
       store.mode === 'firebase' ? h('button', { type: 'button', class: 'ad-link', onClick: () => store.logout().catch((e) => fail(e, 'Déconnexion impossible')) }, 'Déconnexion (' + (user.email || '') + ')') : null));
   const banner = store.mode === 'local'
-    ? h('div', { class: 'note info ad-banner' }, 'Mode local : tout fonctionne, mais les données restent dans ce navigateur. Remplis firebase-config.js avec ta config Firebase pour publier en ligne (voir README).')
+    ? h('div', { class: 'note info ad-banner' }, 'Mode local : tout fonctionne, mais les données restent dans ce navigateur. Remplis js/firebase-config.js avec ta config Firebase pour publier en ligne (voir README).')
     : null;
   clear(app).append(h('div', { class: 'ad-layout' }, side, h('div', { class: 'ad-col' }, banner, main)));
   paintNav();

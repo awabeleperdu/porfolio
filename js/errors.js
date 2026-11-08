@@ -21,7 +21,7 @@ export function explain(err) {
     'auth/operation-not-allowed': 'La connexion par email n’est pas activée : Firebase → Authentication → Sign-in method → Email/Mot de passe → Activer.',
     'auth/network-request-failed': 'Réseau indisponible pendant la connexion.',
     'auth/unauthorized-domain': 'Ce domaine n’est pas autorisé : Firebase → Authentication → Paramètres → Domaines autorisés → ajoute ton adresse github.io.',
-    'auth/api-key-not-valid.-please-pass-a-valid-api-key.': 'La clé de config Firebase est invalide : vérifie firebase-config.js.',
+    'auth/api-key-not-valid.-please-pass-a-valid-api-key.': 'La clé de config Firebase est invalide : vérifie js/firebase-config.js.',
     'QuotaExceededError': 'Le stockage du navigateur est plein. Supprime des images ou passe en mode Firebase.'
   };
   return { code, message: map[code] || raw, detail: map[code] ? code + ' · ' + raw : code };

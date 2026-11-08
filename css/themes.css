@@ -1,5 +1,5 @@
 /* 6 thèmes. Pour en créer un : copie un bloc, change le nom et les couleurs,
-   puis ajoute-le dans theme.js. */
+   puis ajoute-le dans js/theme.js. */
 :root,[data-theme="pro"]{
   --bg:#f6f5f1;--bgimg:none;--bgsize:auto;--s:#ffffff;--s2:#efede6;--t:#14171f;--m:#5b6170;--faint:#c9ccd4;--hl:#1d4ed8;--l:#e0ddd3;--bw:1px;
   --a:#1d4ed8;--a2:#0ea5e9;--lc:#1d4ed8;--on:#ffffff;--pbd:#e0ddd3;--r:12px;

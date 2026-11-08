@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────
-//  CONFIG FIREBASE  (fichier : firebase-config.js)
+//  CONFIG FIREBASE  (fichier : js/firebase-config.js)
 //
 //  1. Console Firebase → ⚙ Paramètres du projet → Tes applications → Application Web (</>)
 //  2. Copie les 4 valeurs ci-dessous à la place de COLLE_ICI (garde les guillemets).
