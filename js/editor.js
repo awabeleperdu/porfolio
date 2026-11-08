@@ -8,6 +8,7 @@ import { THEMES, applyTheme, themePicker } from './theme.js';
 import { blankProject, makeBlock, MODE_LABELS, BADGES } from './model.js';
 import { BLOCK_TYPES, renderBlock } from './render.js';
 import { initTheme } from './theme.js';
+import { markdownToBlocks } from './markdown.js';
 
 const app = $('#app');
 let store = null;
@@ -89,6 +90,9 @@ function build() {
     it.addEventListener('click', () => insertAt(p.blocks.length, makeBlock(b.t)));
     pal.append(it);
   });
+  const mdBtn = h('button', { type: 'button', class: 'abtn primary block' }, 'Importer un fichier .md');
+  mdBtn.addEventListener('click', () => pickFile('.md,.markdown,text/markdown,text/plain', async (f) => importMarkdown(await readText(f))));
+  pal.append(mdBtn, h('p', { class: 'ad-sub' }, 'Un README ou des notes en Markdown : titres, listes, code et images deviennent des blocs.'));
   pal.append(h('p', { class: 'ad-sub' }, 'Tu peux aussi déposer des fichiers depuis ton ordinateur : image, .py, .js, .html, .css.'));
 
   refs.page = h('div', { class: 'ed-page', 'data-theme': previewTheme });
@@ -251,6 +255,8 @@ async function handleFiles(files, at) {
       insertAt(i++, b);
     } else if (f.type && f.type.startsWith('video/')) {
       toast('Les vidéos ne sont pas stockées ici : mets-la sur YouTube et colle le lien dans un bloc Vidéo.', 'info');
+    } else if (/\.(md|markdown)$/i.test(name)) {
+      importMarkdown(await readText(f));
     } else if (/\.(py|js|mjs|html|css|json|sh|txt)$/i.test(name)) {
       const code = await readText(f);
       const ext = name.split('.').pop().toLowerCase();
@@ -263,6 +269,20 @@ async function handleFiles(files, at) {
       toast('« ' + name + ' » : format non pris en charge (image, .py, .js, .html, .css).', 'info');
     }
   }
+}
+
+function importMarkdown(text) {
+  const r = markdownToBlocks(text);
+  if (!r.blocks.length && !r.title && !r.desc) { toast('Ce fichier Markdown est vide.', 'info'); return; }
+  if (r.title && (!p.title || p.title === 'Nouveau projet' || p.title === 'Sans titre')) { p.title = r.title; if (refs.title) refs.title.value = p.title; }
+  if (r.desc && !p.desc) p.desc = r.desc;
+  if (r.tags.length && !(p.tags || []).length) p.tags = r.tags;
+  p.blocks.push(...r.blocks);
+  selected = null;
+  touch();
+  renderAll();
+  toast(r.blocks.length + ' bloc(s) ajouté(s) depuis le Markdown');
+  if (r.notes.length) toast(r.notes[0], 'info');
 }
 
 function pickFile(accept, cb) {
@@ -370,6 +390,13 @@ function blockPanel() {
   return box;
 }
 
+function mdPaste() {
+  const a = h('textarea', { rows: 4, class: 'mono', placeholder: '# Titre\n\nTon texte en Markdown…', spellcheck: 'false' });
+  const go = h('button', { type: 'button', class: 'abtn ghost block' }, 'Convertir en blocs');
+  go.addEventListener('click', () => { if (a.value.trim()) { importMarkdown(a.value); a.value = ''; } });
+  return h('div', { class: 'field' }, a, go);
+}
+
 function badgePicker() {
   p.badges = p.badges || [];
   const row = h('div', { class: 'chips' });
@@ -407,6 +434,8 @@ function projectPanel() {
     h('div', { class: 'field' }, h('span', null, 'Image de couverture'), coverRow),
     h('div', { class: 'ad-inline' }, switchEl(p.featured, (v) => { p.featured = v; touch(); }, 'Mettre à la une'), h('span', null, 'Mettre à la une')),
     field('Lien du code (GitHub)', textIn(p.link, (v) => { p.link = v; touch(); }, { type: 'url', placeholder: 'https://github.com/…' })),
+    h('h2', { class: 'ad-h2' }, 'Coller du Markdown'),
+    mdPaste(),
     h('h2', { class: 'ad-h2' }, 'Exécution dans le navigateur'));
 
   const mode = h('select', null, Object.entries(MODE_LABELS).map(([k, l]) => h('option', { value: k, selected: k === p.mode }, l)));

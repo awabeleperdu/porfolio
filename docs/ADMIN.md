@@ -4,6 +4,7 @@
 
 - **Projets** : dépose un fichier `.py` ou `.html` sur la zone, le site l'analyse (modules utilisés, clé d'API, etc.) et crée le projet.
   Les boutons ouvrent l'éditeur : blocs titre, texte, image, vidéo (lien), code, bouton, projet exécutable. Glisse-les ou touche-les. Aperçu, Publier/Dépublier, Ctrl+S.
+- **Markdown (.md)** : dépose un `.md` (README, notes) sur la zone de l'admin, ou utilise « Importer un fichier .md » / « Coller du Markdown » dans l'éditeur. Titres, listes, code, citations, séparateurs, liens et images en https:// deviennent des blocs modifiables. Un `# Titre` donne le titre du projet, le premier paragraphe la description. Les images locales (`img/x.png`) sont ignorées : ajoute-les avec un bloc Image.
 - **Catégories**, **Thèmes** (thème du site + autoriser ou non le visiteur à changer), **Profil et site** (photo, bio, compétences, coordonnées de la carte, sections affichées, export/import JSON).
 - **Aide et Python** : guide, diagnostic de connexion, ton UID.
 

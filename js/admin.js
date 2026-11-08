@@ -5,6 +5,8 @@ import { toast, switchEl } from './ui.js';
 import { getStore } from './store.js';
 import { THEMES } from './theme.js';
 import { analyzeFile, MAX_DOC } from './analyze.js';
+import { markdownToBlocks } from './markdown.js';
+import { readText } from './dom.js';
 import { blankProject, makeBlock, MODE_LABELS } from './model.js';
 import { fillAvatar } from './common.js';
 
@@ -131,13 +133,23 @@ async function projectsTab(el) {
 
   /* zone de dépôt + analyse */
   const result = h('div');
-  const input = h('input', { type: 'file', id: 'dz-file', accept: '.py,.html,.htm', class: 'sr-only' });
+  const input = h('input', { type: 'file', id: 'dz-file', accept: '.py,.html,.htm,.md,.markdown', class: 'sr-only' });
   const dz = h('div', { class: 'dz' },
     h('div', { class: 'dz-title' }, 'Dépose ton projet ici'),
-    h('p', { class: 'ad-sub' }, 'Un fichier .py ou .html. Je lis le code, je détecte ce dont il a besoin, et je te dis comment le faire tourner.'),
+    h('p', { class: 'ad-sub' }, 'Un fichier .py, .html ou .md (Markdown : il devient une page de projet). Je lis le code, je détecte ce dont il a besoin, et je te dis comment le faire tourner.'),
     h('label', { class: 'abtn ghost', for: 'dz-file' }, 'Choisir un fichier'), input);
   const analyse = async (file) => {
     clear(result);
+    if (/\.(md|markdown)$/i.test(file.name || '')) {
+      try {
+        const r = markdownToBlocks(await readText(file));
+        const base = file.name.replace(/\.(md|markdown)$/i, '');
+        const pr = blankProject({ title: r.title || base, desc: r.desc, tags: r.tags, blocks: r.blocks, categoryId: (cats[0] && cats[0].id) || '' });
+        await store.saveProject(pr);
+        location.href = 'editeur.html?id=' + encodeURIComponent(pr.id);
+      } catch (e) { result.append(noteEl('bad', explain(e).message)); }
+      return;
+    }
     try { result.append(analysisCard(await analyzeFile(file))); }
     catch (e) { result.append(noteEl('bad', explain(e).message)); }
   };
