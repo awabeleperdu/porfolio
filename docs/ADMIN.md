@@ -39,7 +39,7 @@ et remplit son profil dans Admin (nom, photo, bio, couleurs : tout se change là
 ## 8. Installer le site comme une application (PWA)
 
 Le site est installable et s'ouvre aussi sans réseau (les pages déjà visitées, le contenu Firebase demande internet).
-- **Android (Chrome)** : un bouton « Installer l'application » apparaît en bas de l'écran, ou menu ⋮ → « Installer l'application ».
+- **Android (Chrome)** : dans l'admin, un bouton « Installer l'application » apparaît en bas de l'écran (ou menu ⋮ → « Installer l'application »). Les visiteurs ne le voient pas.
 - **iPhone (Safari)** : bouton Partager → « Sur l'écran d'accueil ».
 - **Ordinateur (Chrome, Edge)** : icône d'installation dans la barre d'adresse.
 

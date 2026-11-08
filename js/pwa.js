@@ -1,4 +1,6 @@
-// Installation en application + service worker. Chargé par toutes les pages.
+// Service worker (hors connexion) sur toutes les pages.
+// Le bouton « Installer l'application » n'apparaît que dans l'admin et l'éditeur : un visiteur n'en a pas besoin.
+// (L'installation reste possible via le menu du navigateur.)
 import { h } from './dom.js';
 
 const store = {
@@ -12,12 +14,13 @@ if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.
   });
 }
 
+const isAdminPage = /(^|\/)(admin|editeur)(\.html)?$/.test(location.pathname);
 const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 let deferred = null;
 let pill = null;
 
 function show(label, onClick, hint) {
-  if (standalone || store.get('pwa-dismissed') === '1' || pill) return;
+  if (!isAdminPage || standalone || store.get('pwa-dismissed') === '1' || pill) return;
   pill = h('div', { class: 'pwa-pill', role: 'region', 'aria-label': 'Installer l’application' },
     h('button', { type: 'button', class: 'pwa-go' }, label),
     hint ? h('span', { class: 'pwa-hint' }, hint) : null,
@@ -28,6 +31,7 @@ function show(label, onClick, hint) {
 }
 
 window.addEventListener('beforeinstallprompt', (e) => {
+  if (!isAdminPage) return; // visiteurs : on laisse le navigateur gérer, sans bouton
   e.preventDefault();
   deferred = e;
   show('Installer l’application', async () => {
@@ -42,6 +46,6 @@ window.addEventListener('appinstalled', () => { if (pill) pill.remove(); });
 
 // iPhone / iPad (Safari) : pas de bouton automatique, on explique le geste.
 const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) && !/crios|fxios/i.test(navigator.userAgent);
-if (ios && !standalone) {
+if (ios && !standalone && isAdminPage) {
   setTimeout(() => show('Ajouter à l’écran d’accueil', () => alert('Touche le bouton Partager (le carré avec la flèche), puis « Sur l’écran d’accueil ».'), null), 2500);
 }
