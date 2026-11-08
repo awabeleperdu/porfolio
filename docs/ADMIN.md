@@ -35,3 +35,17 @@ puis ajoute-le dans la liste `THEMES` en haut de `js/theme.js`.
 
 Il suffit de lui passer le dossier : il crée son Firebase, met ses valeurs dans `firebase-config.js`, son UID dans `firestore.rules`,
 et remplit son profil dans Admin (nom, photo, bio, couleurs : tout se change là, rien à toucher dans le code).
+
+## 8. Installer le site comme une application (PWA)
+
+Le site est installable et s'ouvre aussi sans réseau (les pages déjà visitées, le contenu Firebase demande internet).
+- **Android (Chrome)** : un bouton « Installer l'application » apparaît en bas de l'écran, ou menu ⋮ → « Installer l'application ».
+- **iPhone (Safari)** : bouton Partager → « Sur l'écran d'accueil ».
+- **Ordinateur (Chrome, Edge)** : icône d'installation dans la barre d'adresse.
+
+Fichiers concernés : `manifest.webmanifest` (nom, couleurs, icônes), `sw.js` (service worker), `js/pwa.js` (bouton d'installation), icônes dans `assets/`.
+Pour changer le nom ou la couleur de l'appli, modifie `manifest.webmanifest`. Le service worker récupère toujours la dernière version quand tu as du réseau : pas de cache à vider.
+
+## 9. Sur téléphone
+
+Le site, l'admin et l'éditeur sont faits pour le téléphone. Dans l'éditeur, touche un bloc de la palette pour l'ajouter (pas besoin de glisser-déposer), puis touche-le dans la page pour le modifier : le panneau de réglages s'ouvre en dessous.

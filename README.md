@@ -12,6 +12,8 @@ Site statique : aucun build, il se publie tel quel sur **GitHub Pages**.
 ├── projet.html          ← page d'un projet
 ├── admin.html           ← espace admin
 ├── editeur.html         ← éditeur de projet par blocs
+├── manifest.webmanifest ← appli installable (PWA)
+├── sw.js                ← service worker (hors connexion)
 ├── .nojekyll
 ├── css/                 ← base, themes (les 6 thèmes), site, admin
 ├── js/                  ← le code

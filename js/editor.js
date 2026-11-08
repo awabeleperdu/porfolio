@@ -126,6 +126,12 @@ function setDevice(d) {
   refs.canvas.classList.toggle('mobile', d === 'mobile');
 }
 
+// Sur téléphone, le panneau de réglages est sous la page : on y descend après avoir touché un bloc.
+function revealInspector() {
+  if (window.innerWidth > 1000 || !refs.insp) return;
+  setTimeout(() => refs.insp.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+}
+
 function renderAll() { renderCanvas(); renderInspector(); renderChrome(); }
 
 function renderChrome() {
@@ -147,6 +153,7 @@ function insertAt(i, block) {
   itab = 'bloc';
   touch();
   renderAll();
+  revealInspector();
   const el = refs.canvas.querySelector('[data-id="' + block.id + '"]');
   if (el && el.scrollIntoView) el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
@@ -223,7 +230,7 @@ function blockEl(b, i) {
     class: 'ed-block' + (b.id === selected ? ' sel' : ''), 'data-id': b.id, role: 'button', tabindex: '0',
     'aria-pressed': String(b.id === selected), 'aria-label': TYPE_LABEL[b.type] + ' ' + (i + 1), draggable: 'true'
   });
-  const pick = () => { selected = b.id; itab = 'bloc'; renderCanvas(); renderInspector(); };
+  const pick = () => { selected = b.id; itab = 'bloc'; renderCanvas(); renderInspector(); revealInspector(); };
   wrap.addEventListener('click', pick);
   wrap.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target === wrap) { e.preventDefault(); pick(); } });
   wrap.addEventListener('dragstart', (e) => { drag = { kind: 'move', id: b.id }; e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', b.id); document.body.classList.add('dragging'); });

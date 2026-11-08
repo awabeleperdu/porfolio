@@ -44,3 +44,20 @@ button,input,select,textarea{font:inherit;color:inherit}
 .err-item pre{white-space:pre-wrap;word-break:break-word;font-size:12px;background:rgba(0,0,0,.06);padding:8px;border-radius:8px;margin:8px 0 0}
 .err-actions{display:flex;gap:8px;margin-top:10px}
 .err-actions button{border:1px solid #f5a8a3;background:#fff;border-radius:8px;padding:5px 12px;cursor:pointer;color:#7a1410}
+
+/* téléphone : pas de défilement horizontal, zones tactiles confortables */
+html,body{overflow-x:clip;max-width:100%}
+body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+@media(max-width:700px){
+  body{font-size:16px}
+  .btn{min-height:44px}
+  .chip{padding:9px 16px}
+  .wrap{width:calc(100% - 32px)}
+  .narrow{width:calc(100% - 32px)}
+  .toasts{bottom:calc(16px + env(safe-area-inset-bottom))}
+}
+
+/* bouton « Installer l'application » */
+.pwa-pill{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom));z-index:150;display:flex;align-items:center;gap:6px;background:#111827;color:#fff;border-radius:99px;padding:6px 6px 6px 16px;box-shadow:0 10px 30px rgba(0,0,0,.35);font-family:Inter,system-ui,sans-serif;font-size:14px;max-width:calc(100% - 24px)}
+.pwa-go{border:0;background:none;color:#fff;font-weight:600;cursor:pointer;padding:8px 4px;min-height:40px}
+.pwa-x{border:0;background:rgba(255,255,255,.14);color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;line-height:1}

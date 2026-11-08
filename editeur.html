@@ -2,7 +2,13 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1d4ed8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Portfolio">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta name="robots" content="noindex">
 <title>Éditeur · Portfolio</title>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -18,5 +24,6 @@
 <div id="app"><p class="ad-loading">Chargement…</p></div>
 <noscript><p class="ad-loading">L’éditeur a besoin de JavaScript.</p></noscript>
 <script type="module" src="js/editor.js"></script>
+<script type="module" src="js/pwa.js"></script>
 </body>
 </html>

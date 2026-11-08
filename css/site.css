@@ -193,3 +193,41 @@
 .pbadge.tone-b::before{background:var(--m)}
 .pbadge.tone-ok::before{background:#16a34a}
 .pbadge.tone-warn::before{background:#d97706}
+
+/* ───── téléphone ───── */
+@media(max-width:700px){
+  .site-header{padding-top:env(safe-area-inset-top)}
+  .bar{min-height:58px}
+  .hero{padding:28px 0 36px;gap:28px}
+  .hero::before{display:none}
+  #hero-title{font-size:clamp(34px,11vw,48px)}
+  .lead{font-size:17px}
+  .actions .btn{flex:1 1 140px}
+  .section{padding-top:56px}
+  .section-head{margin-bottom:20px}
+  .chips{flex-wrap:nowrap;overflow-x:auto;margin-inline:-16px;padding:2px 16px 8px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:none}
+  .grid{grid-template-columns:1fr;gap:16px}
+  .card:hover{transform:none}
+  .card-body{padding:16px}
+  .card-actions .btn{flex:1 1 auto}
+  .panel{padding:20px}
+  .about-bio p{font-size:16px}
+  .portrait{min-height:260px;font-size:64px}
+  .marquee-track{font-size:18px;gap:20px}
+  .contact-links .btn{flex:1 1 100%}
+  .site-footer{margin-top:64px;padding-bottom:calc(22px + env(safe-area-inset-bottom))}
+  .p-hero{padding-top:32px}
+  .p-nav{grid-template-columns:1fr}
+  .p-nav-item.next{grid-column:1}
+  .b-text{font-size:17px}
+  .b-code pre{font-size:13px;padding:12px}
+  .rn-code,.rn-inputs{font-size:16px}
+  .rn-btns .btn{min-height:42px}
+  .rn-out{max-height:320px}
+  .rn-iframe{height:70vh}
+  .flip-card{width:100%}
+  .back-row{font-size:12.5px}
+}
+@media(max-width:700px){.brand{font-size:15px;min-width:0}}
