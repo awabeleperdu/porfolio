@@ -4,6 +4,7 @@ import { h, safeUrl } from './dom.js';
 import { projectHref, canRun } from './common.js';
 import { loadImage } from './render.js';
 import { badgeRow } from './model.js';
+import { resolveSrc } from './media.js';
 
 const NS = 'http://www.w3.org/2000/svg';
 const icon = (paths, size = 22) => {
@@ -77,4 +78,21 @@ export function contactRows(profile) {
   ];
   return rows.filter((r) => r[2]);
 }
-export const cvHref = (profile) => safeUrl(profile.cvUrl || '');
+export const hasCv = (profile) => !!(profile.cvUrl && (String(profile.cvUrl).startsWith('m:') || safeUrl(profile.cvUrl)));
+
+// Donne un lien au bouton CV : lien direct, ou PDF stocké dans la base (converti en lien temporaire).
+export async function setCvLink(a, profile) {
+  const u = String(profile.cvUrl || '');
+  if (u.startsWith('m:')) {
+    try {
+      const data = await resolveSrc(u);
+      const bin = atob(data.split(',')[1] || '');
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      a.href = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+      a.setAttribute('download', 'CV.pdf');
+    } catch (e) { a.hidden = true; return; }
+  } else a.href = safeUrl(u);
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+}

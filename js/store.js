@@ -74,6 +74,12 @@ function localStore() {
       ls.set('pf:media:' + id, JSON.stringify({ data, name: file.name }));
       return id;
     },
+    async saveFile(file) {
+      const data = await readPdf(file);
+      const id = uid() + uid();
+      ls.set('pf:media:' + id, JSON.stringify({ data, name: file.name }));
+      return id;
+    },
     async getMedia(id) { const m = read('media:' + id, null); return m ? m.data : ''; },
 
     async seed() { seed(); },
@@ -164,6 +170,12 @@ async function firebaseStore() {
       await setDoc(doc(db, 'media', id), { data, name: file.name || 'image', createdAt: Date.now() });
       return id;
     },
+    async saveFile(file) {
+      const data = await readPdf(file);
+      const id = uid() + uid();
+      await setDoc(doc(db, 'media', id), { data, name: file.name || 'cv.pdf', createdAt: Date.now() });
+      return id;
+    },
     async getMedia(id) { const s = await getDoc(doc(db, 'media', id)); return s.exists() ? s.data().data : ''; },
 
     async seed() {
@@ -202,4 +214,16 @@ async function firebaseStore() {
     }
   };
   return api;
+}
+
+// Lit un PDF en texte (data URL). Limite : un document Firestore fait 1 Mo au maximum.
+async function readPdf(file) {
+  if (!file || (file.type !== 'application/pdf' && !/\.pdf$/i.test(file.name || ''))) throw new Error('« ' + ((file && file.name) || 'fichier') + ' » n’est pas un PDF.');
+  if (file.size > 650000) throw new Error('Ce PDF fait ' + Math.round(file.size / 1000) + ' Ko : la limite est 650 Ko. Compresse-le (par ex. avec ilovepdf.com) puis réessaie.');
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result).replace(/^data:[^;]*;/, 'data:application/pdf;'));
+    r.onerror = () => reject(new Error('Impossible de lire ce fichier.'));
+    r.readAsDataURL(file);
+  });
 }

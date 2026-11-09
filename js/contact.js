@@ -2,7 +2,7 @@ import './errors.js';
 import { h, $ } from './dom.js';
 import { fail } from './errors.js';
 import { bootSite, fillChrome } from './common.js';
-import { mountTabbar, contactRows, cvHref, svgIcon } from './cards.js';
+import { mountTabbar, contactRows, hasCv, setCvLink, svgIcon } from './cards.js';
 
 async function main() {
   const { profile } = await bootSite();
@@ -36,8 +36,7 @@ async function main() {
     if (!href) return;
     actions.append(h('a', { class: 'c-btn' + (i === 0 ? ' primary' : ''), href, target: href.startsWith('http') ? '_blank' : undefined, rel: 'noopener noreferrer' }, svgIcon(ic, 20), labels[key]));
   });
-  const cv = cvHref(profile);
-  if (cv) actions.append(h('a', { class: 'c-btn', href: cv, target: '_blank', rel: 'noopener noreferrer' }, svgIcon('dl', 20), 'Télécharger mon CV'));
+  if (hasCv(profile)) { const a = h('a', { class: 'c-btn' }, svgIcon('dl', 20), 'Télécharger mon CV'); actions.append(a); setCvLink(a, profile); }
   if (!actions.children.length) actions.append(h('p', { class: 'muted' }, 'Aucune coordonnée renseignée.'));
   const first = actions.querySelector('.c-btn');
   if (first && !actions.querySelector('.primary')) first.classList.add('primary');

@@ -2,7 +2,7 @@ import './errors.js';
 import { h, clear, $ } from './dom.js';
 import { fail } from './errors.js';
 import { bootSite, fillAvatar, canRun, fillChrome } from './common.js';
-import { projectCard, liveCard, mountTabbar, cvHref } from './cards.js';
+import { projectCard, liveCard, mountTabbar, hasCv, setCvLink } from './cards.js';
 
 async function main() {
   const { store, profile } = await bootSite();
@@ -22,8 +22,7 @@ async function main() {
   } else title.textContent = head;
   $('#hero-intro').textContent = profile.intro || '';
   if (profile.seeking) { const s = $('#seeking'); s.textContent = 'Je cherche : ' + profile.seeking; s.hidden = false; }
-  const cv = cvHref(profile);
-  if (cv) { const b = $('#cv-btn'); b.href = cv; b.hidden = false; if (/^https?:/i.test(cv) || /\.pdf$/i.test(cv)) { b.target = '_blank'; b.rel = 'noopener noreferrer'; } }
+  if (hasCv(profile)) { const b = $('#cv-btn'); b.hidden = false; setCvLink(b, profile); }
 
   /* démo en direct : le premier projet qui peut se lancer */
   const live = projects.find((p) => canRun(p) && p.mode === 'py') || projects.find(canRun);

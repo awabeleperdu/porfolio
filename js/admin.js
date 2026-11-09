@@ -370,11 +370,31 @@ async function profileTab(el) {
     text('seeking', 'Ce que tu cherches (puce sur l’accueil)', { ph: 'Un stage en développement', hint: 'Laisse vide pour ne pas l’afficher.' }),
     text('bio', 'Bio (section À propos)', { area: true, rows: 5 })));
 
+  const cvState = h('p', { class: 'muted' });
+  const cvErr = h('div', { class: 'note bad', role: 'alert', hidden: true });
+  const cvFile = h('input', { type: 'file', accept: 'application/pdf,.pdf' });
+  const cvRm = h('button', { type: 'button', class: 'abtn ghost', onClick: () => { p.cvUrl = ''; paintCv(); } }, 'Retirer le CV');
+  const paintCv = () => {
+    cvState.textContent = p.cvUrl ? (String(p.cvUrl).startsWith('m:') ? 'CV envoyé : pense à enregistrer.' : 'Lien actuel : ' + p.cvUrl) : 'Aucun CV : le bouton est caché sur le site.';
+    cvRm.hidden = !p.cvUrl;
+  };
+  cvFile.addEventListener('change', async () => {
+    const f = cvFile.files[0];
+    if (!f) return;
+    cvErr.hidden = true;
+    try { p.cvUrl = 'm:' + (await store.saveFile(f)); paintCv(); } catch (e) { cvErr.textContent = explain(e).message; cvErr.hidden = false; }
+    cvFile.value = '';
+  });
+  const cvUrlIn = h('input', { type: 'text', placeholder: 'ou colle un lien https://…' });
+  cvUrlIn.addEventListener('input', () => { p.cvUrl = cvUrlIn.value.trim(); paintCv(); });
+  paintCv();
+  const cvField = () => h('div', { class: 'field' }, h('span', null, 'Ton CV (PDF, 650 Ko max)'), cvFile, cvUrlIn, cvState, cvErr, cvRm);
+
   el.append(h('section', { class: 'ad-card' },
     h('h2', null, 'Contact (verso de la carte)'),
     h('div', { class: 'grid2' }, text('email', 'Email', { type: 'email' }), text('phone', 'Téléphone', { hint: 'Laisse vide pour ne pas l’afficher.' })),
     h('div', { class: 'grid2' }, text('github', 'GitHub', { ph: 'github.com/…' }), text('linkedin', 'LinkedIn', { ph: 'linkedin.com/in/…' })),
-    text('cvUrl', 'Lien de ton CV (PDF)', { ph: 'https://… ou assets/cv.pdf', hint: 'Laisse vide pour cacher le bouton « Mon CV ».' }),
+    cvField(),
     text('cardCode', 'Petit code décoratif sur la carte', { ph: '031' })));
 
   /* compétences */
