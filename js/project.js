@@ -1,7 +1,8 @@
 import './errors.js';
 import { h, clear, $ } from './dom.js';
 import { fail } from './errors.js';
-import { bootSite, fillAvatar, projectHref, canRun } from './common.js';
+import { bootSite, projectHref, canRun, fillChrome } from './common.js';
+import { mountTabbar } from './cards.js';
 import { renderBlocks, runnerSection, loadImage } from './render.js';
 import { badgeRow } from './model.js';
 
@@ -11,9 +12,8 @@ async function main() {
   const preview = params.get('preview') === '1';
   const autostart = params.get('run') === '1';
   const { store, profile } = await bootSite();
-  $('#brand-name').textContent = profile.name || 'Portfolio';
-  $('#footer-name').textContent = '© ' + new Date().getFullYear() + ' ' + (profile.name || '');
-  fillAvatar($('#avatar-s'), profile);
+  fillChrome(profile);
+  mountTabbar('projets');
 
   const main = clear($('#main'));
   let p = null;
@@ -21,7 +21,7 @@ async function main() {
   if (p && !p.visible && store.mode === 'local' && !preview) p = null;
   if (!p) {
     document.title = 'Projet introuvable';
-    main.append(h('section', { class: 'wrap narrow' }, h('h1', { class: 'h-xl' }, 'Projet introuvable'), h('p', { class: 'lead' }, 'Ce projet n’existe pas ou n’est pas publié.'), h('p', null, h('a', { class: 'btn btn-primary', href: './#projets' }, 'Voir tous les projets'))));
+    main.append(h('section', { class: 'wrap narrow' }, h('h1', { class: 'h-xl' }, 'Projet introuvable'), h('p', { class: 'lead' }, 'Ce projet n’existe pas ou n’est pas publié.'), h('p', null, h('a', { class: 'btn btn-primary', href: 'projets.html' }, 'Voir tous les projets'))));
     return;
   }
   document.title = p.title + ' · ' + (profile.name || 'Portfolio');
@@ -38,6 +38,7 @@ async function main() {
     h('h1', { class: 'p-title' }, p.title),
     badgeRow(p),
     p.desc ? h('p', { class: 'lead' }, p.desc) : null,
+    p.role ? h('div', { class: 'pc-role p-role' }, h('span', null, 'Ce que j’ai fait'), h('p', null, p.role)) : null,
     h('div', { class: 'tags' }, (p.tags || []).map((t) => h('span', { class: 'tag' }, t))),
     links);
   if (p.cover) {

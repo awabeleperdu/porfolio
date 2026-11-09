@@ -436,6 +436,7 @@ function projectPanel() {
     h('h2', { class: 'ad-h2' }, 'Le projet'),
     field('Catégorie', cat),
     field('Description courte', areaIn(p.desc, (v) => { p.desc = v; touch(); }, 3), 'Affichée sur la carte et en haut de la page.'),
+    field('Ce que j’ai fait (une ligne)', areaIn(p.role || '', (v) => { p.role = v; touch(); }, 2), 'Ton rôle précis, affiché sur la carte. Ex. : « Écrit en Python, exécuté dans le navigateur grâce à Pyodide. »'),
     field('Tags', tags, 'Séparés par des virgules.'),
     badgePicker(),
     h('div', { class: 'field' }, h('span', null, 'Image de couverture'), coverRow),

@@ -20,86 +20,53 @@
 <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-<a class="skip" href="#projets">Aller aux projets</a>
-
+<a class="skip" href="#main">Aller au contenu</a>
 <header class="site-header">
   <div class="wrap bar">
-    <a class="brand" href="./"><span class="avatar avatar-s" id="avatar-s" aria-hidden="true"></span><span id="brand-name">Portfolio</span></a>
+    <a class="brand" href="index.html"><span class="avatar avatar-s" id="avatar-s" aria-hidden="true"></span><span id="brand-name">Portfolio</span></a>
     <nav class="nav" aria-label="Navigation principale">
-      <a href="#projets" data-nav="projets">Projets</a>
-      <a href="#apropos" data-nav="apropos">À propos</a>
-      <a href="#contact" data-nav="contact">Contact</a>
+      <a href="projets.html" data-page="projets">Projets</a>
+      <a href="index.html#apropos" data-page="apropos">À propos</a>
+      <a href="contact.html" data-page="contact">Contact</a>
       <div class="theme-picker" id="theme-picker" role="group" aria-label="Choisir le thème"></div>
     </nav>
   </div>
 </header>
 
 <main id="main">
-  <section class="hero wrap" id="accueil">
+  <section class="wrap hero" id="accueil">
     <div class="hero-text">
       <p class="eyebrow" id="hero-role"></p>
       <h1 id="hero-title"></h1>
       <p class="lead" id="hero-intro"></p>
+      <p class="seeking" id="seeking" hidden></p>
       <div class="actions">
-        <a class="btn btn-primary btn-lg" href="#projets" data-nav="projets">Voir les projets</a>
-        <a class="btn btn-ghost btn-lg" href="#contact" data-nav="contact">Me contacter</a>
+        <a class="btn btn-primary btn-lg" href="contact.html">Me contacter</a>
+        <a class="btn btn-ghost btn-lg" href="#" id="cv-btn" hidden>Mon CV</a>
       </div>
     </div>
-    <div class="hero-card">
-      <div class="flip-card" id="flip-card">
-        <div class="flip-inner">
-          <div class="face front">
-            <div class="face-top"><span class="eyebrow">Portfolio</span><svg aria-hidden="true" width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 8 C12 12 12 16 8 20"/><path d="M13 5 C19 11 19 17 13 23"/><path d="M18 2 C26 10 26 18 18 26"/></svg></div>
-            <div>
-              <div class="card-name" id="card-name"></div>
-              <div class="card-sub" id="card-sub"></div>
-            </div>
-          </div>
-          <div class="face back">
-            <div class="stripe"></div>
-            <div class="sign-row"><div class="sign" id="card-sign"></div><div class="cvv" id="card-cvv"></div></div>
-            <div class="back-rows" id="back-rows"></div>
-          </div>
-        </div>
-      </div>
-      <button type="button" class="flip-btn" id="flip-btn" aria-pressed="false">Retourner la carte</button>
-    </div>
+    <div class="hero-live" id="hero-live" hidden></div>
   </section>
-
-  <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
 
   <section class="wrap section" id="projets">
     <div class="section-head">
       <div>
-        <p class="eyebrow" id="projets-count">01 · projets</p>
-        <h2 class="h-xl">Ce que j’ai construit</h2>
+        <p class="eyebrow" id="projets-count">Projets</p>
+        <h2 class="h-xl">À voir d’abord</h2>
       </div>
-      <div class="chips" id="filters" role="group" aria-label="Filtrer par catégorie"></div>
+      <a class="see-all" id="see-all" href="projets.html" hidden>Tout voir →</a>
     </div>
-    <div id="featured"></div>
-    <div class="grid" id="grid"></div>
+    <div class="pgrid" id="top-projects"></div>
     <p class="empty" id="empty" hidden></p>
   </section>
 
   <section class="wrap section" id="apropos">
-    <p class="eyebrow">02 · à propos</p>
-    <div class="about">
-      <figure class="portrait" id="portrait" role="img" aria-label="Portrait"></figure>
-      <div class="panel about-bio">
-        <h2 class="h-l" id="about-title"></h2>
-        <p id="about-bio"></p>
-      </div>
-      <div class="panel about-skills">
-        <p class="eyebrow">Compétences</p>
-        <div id="skills"></div>
-      </div>
+    <p class="eyebrow">À propos</p>
+    <div class="about2">
+      <div class="about2-head"><span class="avatar avatar-m" id="portrait" aria-hidden="true"></span><h2 class="h-l" id="about-title"></h2></div>
+      <p class="about2-bio" id="about-bio"></p>
+      <div class="skill-chips" id="skills"></div>
     </div>
-  </section>
-
-  <section class="wrap section" id="contact">
-    <p class="eyebrow">03 · contact</p>
-    <h2 class="h-xxl">On construit<br>un truc ?</h2>
-    <div class="contact-links" id="contact-links"></div>
   </section>
 </main>
 
@@ -109,7 +76,6 @@
     <a href="admin.html" class="footer-admin">Admin</a>
   </div>
 </footer>
-
 <noscript><p class="noscript">Ce site a besoin de JavaScript pour afficher les projets.</p></noscript>
 <script type="module" src="js/site.js"></script>
 <script type="module" src="js/pwa.js"></script>

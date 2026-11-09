@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr" data-theme="pro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1d4ed8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Portfolio">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<title>Projets · Portfolio</title>
+<meta name="description" content="Portfolio : projets, applications web et programmes Python exécutables dans le navigateur.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><span class="avatar avatar-s" id="avatar-s" aria-hidden="true"></span><span id="brand-name">Portfolio</span></a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="projets.html" data-page="projets">Projets</a>
+      <a href="index.html#apropos" data-page="apropos">À propos</a>
+      <a href="contact.html" data-page="contact">Contact</a>
+      <div class="theme-picker" id="theme-picker" role="group" aria-label="Choisir le thème"></div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap page-head">
+    <h1 class="h-xl">Projets</h1>
+    <p class="muted" id="projets-count"></p>
+  </div>
+  <div class="sticky-chips"><div class="wrap"><div class="chips" id="filters" role="group" aria-label="Filtrer par catégorie"></div></div></div>
+  <div class="wrap">
+    <div class="pgrid" id="grid"></div>
+    <p class="empty" id="empty" hidden></p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <span id="footer-name"></span>
+    <a href="admin.html" class="footer-admin">Admin</a>
+  </div>
+</footer>
+<noscript><p class="noscript">Ce site a besoin de JavaScript pour afficher les projets.</p></noscript>
+<script type="module" src="js/projets.js"></script>
+<script type="module" src="js/pwa.js"></script>
+</body>
+</html>

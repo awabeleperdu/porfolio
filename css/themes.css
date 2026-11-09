@@ -40,3 +40,10 @@
   --sh:0 0 0 1px rgba(232,121,249,.4),0 0 28px -4px rgba(232,121,249,.55);--blob:rgba(232,121,249,.1);--grad:linear-gradient(135deg,#4a044e,#7e22ce 55%,#0891b2);
   --th0:linear-gradient(135deg,#a21caf,#7e22ce);--th1:linear-gradient(135deg,#0891b2,#6d28d9);--th2:linear-gradient(135deg,#be185d,#7c3aed);--th3:linear-gradient(135deg,#0e7490,#a21caf);--th4:linear-gradient(135deg,#6d28d9,#db2777);--th5:linear-gradient(135deg,#312e81,#701a75);
 }
+
+[data-theme="nuit"]{
+  --bg:#0b0d12;--bgimg:none;--s:#151922;--s2:#1d2230;--t:#f4f5f7;--m:#a3acbf;--faint:#3a4256;--hl:#6c8dff;--l:#262c3b;--a:#6c8dff;--a2:#c8f542;--lc:#8fa8ff;--on:#0b0d12;--pbd:#262c3b;--r:14px;
+  --f:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;--fs:"Space Grotesk",Inter,system-ui,sans-serif;--w:700;--ls:-.035em;
+  --sh:none;--blob:rgba(108,141,255,.08);--grad:linear-gradient(135deg,#1e3a8a,#6c8dff 70%,#a5b4fc);
+  --th0:linear-gradient(135deg,#1e3a8a,#3b82f6);--th1:linear-gradient(135deg,#0f766e,#2dd4bf);--th2:linear-gradient(135deg,#7c3aed,#c084fc);--th3:linear-gradient(135deg,#b45309,#fbbf24);--th4:linear-gradient(135deg,#be123c,#fb7185);--th5:linear-gradient(135deg,#334155,#94a3b8);
+}

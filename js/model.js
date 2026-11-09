@@ -7,6 +7,7 @@ export function blankProject(over = {}) {
     title: 'Nouveau projet',
     categoryId: '',
     desc: '',
+    role: '',
     tags: [],
     mode: 'none', // none | py | html | embed
     code: '',

@@ -366,13 +366,15 @@ async function profileTab(el) {
     h('h2', null, 'Présentation'),
     h('div', { class: 'grid2' }, text('name', 'Nom affiché'), text('role', 'Ligne sous le nom', { ph: 'Étudiant en BTS CIEL' })),
     h('div', { class: 'grid2' }, text('headline', 'Grande phrase d’accueil'), text('highlight', 'Mots mis en couleur', { hint: 'Doit être copié exactement depuis la phrase.' })),
-    text('intro', 'Phrase d’introduction', { area: true, rows: 2 }),
+    text('intro', 'Phrase d’introduction', { area: true, rows: 2, hint: 'Courte et précise : ce que tu fais, avec quoi.' }),
+    text('seeking', 'Ce que tu cherches (puce sur l’accueil)', { ph: 'Un stage en développement', hint: 'Laisse vide pour ne pas l’afficher.' }),
     text('bio', 'Bio (section À propos)', { area: true, rows: 5 })));
 
   el.append(h('section', { class: 'ad-card' },
     h('h2', null, 'Contact (verso de la carte)'),
     h('div', { class: 'grid2' }, text('email', 'Email', { type: 'email' }), text('phone', 'Téléphone', { hint: 'Laisse vide pour ne pas l’afficher.' })),
     h('div', { class: 'grid2' }, text('github', 'GitHub', { ph: 'github.com/…' }), text('linkedin', 'LinkedIn', { ph: 'linkedin.com/in/…' })),
+    text('cvUrl', 'Lien de ton CV (PDF)', { ph: 'https://… ou assets/cv.pdf', hint: 'Laisse vide pour cacher le bouton « Mon CV ».' }),
     text('cardCode', 'Petit code décoratif sur la carte', { ph: '031' })));
 
   /* compétences */

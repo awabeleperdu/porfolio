@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr" data-theme="pro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1d4ed8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Portfolio">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<title>Contact · Portfolio</title>
+<meta name="description" content="Portfolio : projets, applications web et programmes Python exécutables dans le navigateur.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><span class="avatar avatar-s" id="avatar-s" aria-hidden="true"></span><span id="brand-name">Portfolio</span></a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="projets.html" data-page="projets">Projets</a>
+      <a href="index.html#apropos" data-page="apropos">À propos</a>
+      <a href="contact.html" data-page="contact">Contact</a>
+      <div class="theme-picker" id="theme-picker" role="group" aria-label="Choisir le thème"></div>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap contact-page">
+  <p class="eyebrow">Contact</p>
+  <h1 class="h-xxl c-title">On construit un truc ensemble ?</h1>
+  <div class="c-card-wrap">
+    <div class="flip-card flipped" id="flip-card">
+      <div class="flip-inner">
+        <div class="face front">
+          <div class="face-top"><span class="eyebrow">Portfolio</span><svg aria-hidden="true" width="26" height="26" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 8 C12 12 12 16 8 20"/><path d="M13 5 C19 11 19 17 13 23"/><path d="M18 2 C26 10 26 18 18 26"/></svg></div>
+          <div><div class="card-name" id="card-name"></div><div class="card-sub" id="card-sub"></div></div>
+        </div>
+        <div class="face back">
+          <div class="stripe"></div>
+          <div class="sign-row"><div class="sign" id="card-sign"></div><div class="cvv" id="card-cvv"></div></div>
+          <div class="back-rows" id="back-rows"></div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="flip-btn" id="flip-btn" aria-pressed="true">Revenir au recto</button>
+  </div>
+  <div class="c-actions" id="contact-links"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <span id="footer-name"></span>
+    <a href="admin.html" class="footer-admin">Admin</a>
+  </div>
+</footer>
+<noscript><p class="noscript">Ce site a besoin de JavaScript pour afficher les projets.</p></noscript>
+<script type="module" src="js/contact.js"></script>
+<script type="module" src="js/pwa.js"></script>
+</body>
+</html>

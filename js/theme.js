@@ -1,6 +1,7 @@
 import { h } from './dom.js';
 
 export const THEMES = {
+  nuit: { name: 'Nuit', desc: 'Sombre, bleu électrique, pensé pour le téléphone.', bg: '#0b0d12', a: '#6c8dff' },
   pro: { name: 'Pro', desc: 'Clair, sobre et professionnel. Bleu profond, ombres douces.', bg: '#f6f5f1', a: '#1d4ed8' },
   minuit: { name: 'Minuit', desc: 'Sombre et net, accent menthe.', bg: '#09090b', a: '#5eead4' },
   studio: { name: 'Studio', desc: 'Papier crème et serif éditorial, façon magazine.', bg: '#f4efe6', a: '#c2410c' },
@@ -10,12 +11,12 @@ export const THEMES = {
 };
 
 export function applyTheme(key, el = document.documentElement) {
-  el.setAttribute('data-theme', THEMES[key] ? key : 'pro');
+  el.setAttribute('data-theme', THEMES[key] ? key : 'nuit');
 }
 
 // Thème du site = celui choisi dans l'admin, sauf si le visiteur en a choisi un autre.
 export function initTheme(profile) {
-  let key = THEMES[profile.theme] ? profile.theme : 'pro';
+  let key = THEMES[profile.theme] ? profile.theme : 'nuit';
   if (profile.visitorThemes !== false) {
     try {
       const v = localStorage.getItem('pf:theme');
