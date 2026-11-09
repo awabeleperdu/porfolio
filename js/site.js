@@ -44,7 +44,7 @@ async function main() {
   $('#about-title').textContent = 'Salut, moi c’est ' + ((profile.name || '').split(' ')[0] || '…') + '.';
   $('#about-bio').textContent = profile.bio || '';
   const skills = $('#skills');
-  (profile.skills || []).forEach((s) => skills.append(h('span', { class: 'skill-chip' }, s.name)));
+  (profile.skills || []).forEach((s) => skills.append(h('span', { class: 'skill-chip' }, h('b', null, s.name), s.detail ? h('small', null, s.detail) : null)));
 
   /* sections cachées depuis l'admin */
   if (!show.projets) { $('#projets').hidden = true; document.querySelectorAll('[data-page="projets"]').forEach((a) => (a.hidden = true)); }

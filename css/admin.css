@@ -98,7 +98,7 @@ body.admin input:focus,body.admin select:focus,body.admin textarea:focus{outline
 .photo-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .avatar-prev{width:72px;height:72px;font-size:24px}
 .skills-ed{display:grid;gap:8px}
-.skill-row{display:grid;grid-template-columns:1fr 130px auto;gap:8px;align-items:center}
+.skill-row{display:grid;grid-template-columns:1fr 1.4fr auto;gap:8px;align-items:center}
 .sw-row{justify-content:flex-start}
 
 /* choix du thème */
@@ -193,7 +193,7 @@ body.dragging .ed-gap span{display:block}
   .acts{flex:1 1 100%;justify-content:flex-start;gap:8px}
   .r{text-align:left}
   .kv{grid-template-columns:1fr}
-  .skill-row{grid-template-columns:1fr 100px auto}
+  .skill-row{grid-template-columns:1fr 1fr auto}
   .cat-row{flex-wrap:wrap}
 }
 @media(max-width:700px){

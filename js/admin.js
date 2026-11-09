@@ -404,14 +404,14 @@ async function profileTab(el) {
     p.skills.forEach((s, i) => {
       const n = h('input', { type: 'text', value: s.name, 'aria-label': 'Compétence', placeholder: 'Python' });
       n.addEventListener('input', () => { s.name = n.value; });
-      const lv = h('select', { 'aria-label': 'Niveau', value: String(s.level ?? 3) }, [0, 1, 2, 3, 4, 5].map((x) => h('option', { value: String(x) }, x + ' / 5')));
-      lv.addEventListener('change', () => { s.level = Number(lv.value); });
+      const lv = h('input', { type: 'text', value: s.detail || '', 'aria-label': 'Ce que tu en fais', placeholder: 'ex. les bases, petits scripts', maxlength: '60' });
+      lv.addEventListener('input', () => { s.detail = lv.value; });
       skillsBox.append(h('div', { class: 'skill-row' }, n, lv, h('button', { type: 'button', class: 'ibtn', 'aria-label': 'Retirer cette compétence', onClick: () => { p.skills.splice(i, 1); paintSkills(); } }, '✕')));
     });
   };
   paintSkills();
-  el.append(h('section', { class: 'ad-card' }, h('h2', null, 'Compétences'), skillsBox,
-    h('button', { type: 'button', class: 'abtn ghost', onClick: () => { p.skills.push({ name: '', level: 3 }); paintSkills(); } }, 'Ajouter une compétence')));
+  el.append(h('section', { class: 'ad-card' }, h('h2', null, 'Ce que j’utilise'), h('p', { class: 'muted' }, 'Pas de niveau : écris juste ce que tu en fais, honnêtement (« les bases », « Flask et API », « en apprentissage »).'), skillsBox,
+    h('button', { type: 'button', class: 'abtn ghost', onClick: () => { p.skills.push({ name: '', detail: '' }); paintSkills(); } }, 'Ajouter une compétence')));
 
   /* sections */
   const secs = h('div');

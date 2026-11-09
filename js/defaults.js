@@ -15,10 +15,10 @@ export const DEFAULT_PROFILE = {
   phone: '',
   cardCode: '031',
   skills: [
-    { name: 'Python', level: 4 },
-    { name: 'Flask', level: 3 },
-    { name: 'JavaScript', level: 4 },
-    { name: 'HTML / CSS', level: 4 }
+    { name: 'Python', detail: 'les bases, Flask' },
+    { name: 'Flask', detail: 'petites interfaces web' },
+    { name: 'JavaScript', detail: 'apps web et PWA' },
+    { name: 'HTML / CSS', detail: 'pages et mises en page' }
   ],
   theme: 'nuit',
   visitorThemes: true,
