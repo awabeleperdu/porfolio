@@ -5,7 +5,7 @@ const CACHE = 'portfolio-v2';
 const SHELL = [
   './', 'index.html', 'projet.html', 'projets.html', 'contact.html', 'admin.html', 'editeur.html', 'manifest.webmanifest',
   'css/base.css', 'css/themes.css', 'css/site.css', 'css/admin.css',
-  'js/admin.js', 'js/cards.js', 'js/contact.js', 'js/projets.js', 'js/analyze.js', 'js/common.js', 'js/defaults.js', 'js/dom.js', 'js/editor.js', 'js/errors.js',
+  'js/admin.js', 'js/vendor/qrcode.js', 'js/cards.js', 'js/contact.js', 'js/projets.js', 'js/analyze.js', 'js/common.js', 'js/defaults.js', 'js/dom.js', 'js/editor.js', 'js/errors.js',
   'js/firebase-config.js', 'js/image.js', 'js/markdown.js', 'js/media.js', 'js/model.js', 'js/project.js', 'js/pwa.js',
   'js/render.js', 'js/runner.js', 'js/site.js', 'js/store.js', 'js/theme.js', 'js/ui.js',
   'assets/favicon.svg', 'assets/icon-192.png', 'assets/icon-512.png'

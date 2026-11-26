@@ -38,8 +38,42 @@ async function main() {
   });
   if (hasCv(profile)) { const a = h('a', { class: 'c-btn' }, svgIcon('dl', 20), 'Télécharger mon CV'); actions.append(a); setCvLink(a, profile); }
   if (!actions.children.length) actions.append(h('p', { class: 'muted' }, 'Aucune coordonnée renseignée.'));
+  setupShare(profile);
   const first = actions.querySelector('.c-btn');
   if (first && !actions.querySelector('.primary')) first.classList.add('primary');
+}
+
+/* Transmettre : menu de partage du téléphone (Quick Share sur Android, AirDrop sur iPhone) + QR code */
+function loadScript(src) {
+  return new Promise((res, rej) => {
+    const el = document.createElement('script');
+    el.src = src; el.onload = res; el.onerror = () => rej(new Error('Le QR code n’a pas pu se charger.'));
+    document.head.append(el);
+  });
+}
+async function setupShare(profile) {
+  const url = new URL('./', location.href).href;
+  const title = (profile.name || 'Portfolio') + ' · Portfolio';
+  const note = $('#share-note');
+  const say = (t) => { note.textContent = t; note.hidden = false; };
+  const shareBtn = $('#share-btn');
+  if (navigator.share) {
+    shareBtn.append(svgIcon('link', 20), 'Quick Share / AirDrop…');
+    shareBtn.hidden = false;
+    shareBtn.addEventListener('click', async () => {
+      try { await navigator.share({ title, text: 'Mon portfolio', url }); } catch (e) { if (e && e.name !== 'AbortError') say('Le partage a échoué : ' + (e.message || e.name) + '. Utilise « Copier le lien » ou le QR code.'); }
+    });
+  } else say('Le partage direct n’est pas disponible sur ce navigateur : copie le lien ou fais scanner le QR code.');
+  $('#copy-btn').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(url); say('Lien copié : ' + url); } catch (e) { say('Copie impossible. Voici le lien : ' + url); }
+  });
+  try {
+    if (!window.qrcode) await loadScript('js/vendor/qrcode.js');
+    const qr = window.qrcode(0, 'M');
+    qr.addData(url);
+    qr.make();
+    $('#qr').innerHTML = qr.createSvgTag({ cellSize: 6, margin: 4, scalable: true });
+  } catch (e) { fail(e, 'QR code indisponible'); }
 }
 
 main().catch((err) => fail(err, 'La page contact n’a pas pu charger'));

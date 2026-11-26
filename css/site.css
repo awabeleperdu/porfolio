@@ -335,3 +335,12 @@
 .skill-chip{display:inline-flex;flex-direction:column;gap:1px;border-radius:14px;padding:8px 14px}
 .skill-chip b{font-weight:700;font-size:14px}
 .skill-chip small{font-size:12px;color:var(--m);font-weight:500}
+
+.share{margin-top:40px;display:grid;gap:12px;padding-bottom:8px}
+.share-btns{display:grid;gap:10px}
+.share-btns button{cursor:pointer;font-family:inherit;color:inherit}
+.share-btns .primary{color:var(--on)}
+.share-note{font-size:14px;word-break:break-all}
+.qr{margin:8px 0 0;display:grid;gap:8px;justify-items:center;text-align:center}
+.qr #qr{width:min(100%,260px);background:#fff;border-radius:16px;padding:6px;line-height:0}
+.qr svg{width:100%;height:auto;display:block}
